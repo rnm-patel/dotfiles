@@ -99,18 +99,7 @@ fi
 #fi
 export GPG_TTY=$(tty)
 
-
-
-### START splunk_alias
-# Make Splunk CLI Commands Shorter
-sp_home="/opt/splunk"
-export sp_home
-alias sp="$sp_home/bin/splunk"
-alias log="cd $sp_home/var/log/splunk"
-alias modinput="cd $sp_home/var/lib/splunk/modinputs"
-alias app="cd $sp_home/etc/apps"
-alias rr="sp restart"
-alias sclean="sp clean eventdata -f"
-alias ssclean="sp stop && sclean && sp start"
-alias sssclean="sp stop && sclean && log && rm -rf * && modinput && rm -rf * && sp start"
-### END splunk_alias
+# Apply generic rc
+if [ -f ~/.genrc ]; then
+    . ~/.genrc
+fi
